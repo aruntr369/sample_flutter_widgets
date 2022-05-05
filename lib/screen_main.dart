@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ScreenMain extends StatelessWidget {
-  const ScreenMain({ Key? key }) : super(key: key);
+  ScreenMain({Key? key}) : super(key: key);
+
+  final _list = ['Apple', 'Orange', 'Pine Apple'];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('Main screen')),
+          child: DropdownButtonFormField(
+            hint: Text('Select fruits'),
+              items: _list.map((e) {
+                return DropdownMenuItem(value: e, child: Text(e));
+              }).toList(),
+              onChanged: (value) {
+                print(value);
+              })),
     );
   }
 }
