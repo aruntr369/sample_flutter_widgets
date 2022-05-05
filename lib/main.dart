@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,18 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -43,25 +35,50 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("data"),
             const Text(
               'You have pushed the button this many times:',
             ),
             ValueListenableBuilder(
               valueListenable: _counter,
-              builder: (BuildContext ctx, int newValue, Widget? child) {  
-                return Text('$newValue',
-                style: Theme.of(context).textTheme.headline4,);
+              builder: (BuildContext ctx, int newValue, Widget? child) {
+                return Text(
+                  '$newValue',
+                  style: Theme.of(context).textTheme.headline3,
+                );
               },
-              
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          showBottomSheet(context);
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Future<void> showBottomSheet(BuildContext ctx) async {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (ctx1) {
+        return Container(
+          width: double.infinity,
+          height: 500,
+          color: Colors.orange,
+          child: ListView(
+            children: [
+              Text('Tittle'),
+              TextButton(onPressed: (){
+                Navigator.of(ctx1).pop();
+              }, child: Text('close'))
+            ],
+          ),
+        );
+      },
     );
   }
 }
