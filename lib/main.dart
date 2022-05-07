@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_widgets/Screen_home.dart';
+import 'package:sample_widgets/db/screens/home/screen_home_db.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ScreenHome(),
+      home: ScreenHomeDB(),
     );
   }
 }
@@ -54,7 +55,8 @@ class MyHomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showBottomSheet(context);
+          _incrementCounter();
+          //showBottomSheet(context);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
